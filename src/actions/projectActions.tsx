@@ -13,7 +13,7 @@ export const listProjects = () => async(dispatch:Props) => {
   try {
     dispatch({ type: PROJECT_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/projects')
+    const { data } = await axios.get('https://server0342021.herokuapp.com/api/projects')
 
     dispatch({ type: PROJECT_LIST_SUCCESS, payload: data })
   } catch (error) {

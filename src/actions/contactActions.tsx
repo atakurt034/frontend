@@ -21,7 +21,7 @@ export const sendMail = (mail:Props['mail']) => async (dispatch:(props: Props['d
       },
     }
 
-    const { data } = await axios.post('/api/contacts', mail, config)
+    const { data } = await axios.post('https://server0342021.herokuapp.com/api/contacts', mail, config)
     dispatch({
       type: CONTACT_SEND_MAIL_SUCCESS,
       payload: { status: data.status, data: data.data },

@@ -23,12 +23,12 @@ export const Contact = () => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
-  let duration = 1
-  let length = 1200
+  let duration = 2
+  let length = 1000
 
   const smoothScroll = () => {
     duration += 2.5
-    window.scrollBy(0, 1)
+    window.scrollBy(0, 10)
     if (length > duration) {
       setTimeout(() => {
         smoothScroll()
@@ -38,9 +38,7 @@ export const Contact = () => {
 
   const messageHandler = () => {
     setOpen(!open)
-    setTimeout(() => {
-      smoothScroll()
-    }, 1)
+    setTimeout(smoothScroll, 500)
   }
 
   const text: string[] = ['Please', "don't", 'hesistate', 'to', 'contact', 'me']

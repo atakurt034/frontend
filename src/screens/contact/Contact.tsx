@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import {
   Grid,
@@ -23,27 +23,30 @@ export const Contact = () => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
-  let duration = 2
-  let length = 1000
-
-  const smoothScroll = () => {
-    duration += 2.5
-    window.scrollBy(0, 10)
-    if (length > duration) {
-      setTimeout(() => {
-        smoothScroll()
-      }, 1)
-    }
-  }
-
   const messageHandler = () => {
     setOpen(!open)
-    setTimeout(smoothScroll, 500)
   }
 
   const text: string[] = ['Please', "don't", 'hesistate', 'to', 'contact', 'me']
   const arrayCopy = [...text].join(' ')
   const arrayText = Array.from(arrayCopy.split(''))
+
+  useEffect(() => {
+    let duration = 2
+    let length = 800
+    const smoothScroll = () => {
+      duration += 2.5
+      window.scrollBy(0, 2)
+      if (length > duration) {
+        setTimeout(() => {
+          smoothScroll()
+        }, 1)
+      }
+    }
+    if (open) {
+      setTimeout(smoothScroll, 500)
+    }
+  }, [open])
 
   return (
     <Paper id='contact' className={classes.paperWrapper}>

@@ -8,16 +8,15 @@ import {
 } from '@material-ui/core'
 
 import SendIcon from '@material-ui/icons/Send'
-import { sendMail } from '../actions/contactActions'
-import { CONTACT_SEND_MAIL_RESET } from '../constants/contactConstants'
+import { sendMail } from '../../actions/contactActions'
+import { CONTACT_SEND_MAIL_RESET } from '../../constants/contactConstants'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ModalLoader } from './ModalLoader'
-import { ModalMessage } from './ModalMessage'
+import { ModalLoader } from '../../components/ModalLoader'
+import { ModalMessage } from '../../components/ModalMessage'
 import { ContactModal } from './contacktModal/ContactModal'
 import { Fade } from 'react-reveal'
-
 
 const useStyles = makeStyles((theme) => ({
   paperWrapper: {
@@ -35,8 +34,7 @@ const messageKeywords = [
   "Please don't be shy.Message me with more than 5 characters",
 ]
 
-
-export const MessageForm:React.FC = () => {
+export const MessageForm: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
@@ -48,21 +46,21 @@ export const MessageForm:React.FC = () => {
   })
   const { name, email, subject, message } = mail
 
-  
-interface SendMail {
-  contactSendMail: {}[]
-}
-interface SendMailProps {
-  data: {}[],
-  loading: boolean,
-  error:  any,
-  status: string
-  success: boolean
-}
+  interface SendMail {
+    contactSendMail: {}[]
+  }
+  interface SendMailProps {
+    data: {}[]
+    loading: boolean
+    error: any
+    status: string
+    success: boolean
+  }
 
-  const contactSendMail = useSelector<SendMail>((state) => state.contactSendMail)
+  const contactSendMail = useSelector<SendMail>(
+    (state) => state.contactSendMail
+  )
   const { loading, error, success, status } = contactSendMail as SendMailProps
-
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -71,7 +69,7 @@ interface SendMailProps {
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault()
-    
+
     dispatch(
       sendMail({
         name,
@@ -95,10 +93,11 @@ interface SendMailProps {
     }
   }, [loading, error, dispatch, success, status])
 
-  const errorHandler = error &&
-  [...error.split(',')].some((e) =>
-    namelKeywords.includes(e) ? true : false
-  )
+  const errorHandler =
+    error &&
+    [...error.split(',')].some((e) =>
+      namelKeywords.includes(e) ? true : false
+    )
 
   return (
     <>

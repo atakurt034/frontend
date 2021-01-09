@@ -8,18 +8,16 @@ import {
   Box,
   Divider,
 } from '@material-ui/core'
-import {useStyles} from './cStyle';
+import { useStyles } from './cStyle'
 
 import { Edit, Twitter, Facebook } from '@material-ui/icons'
 
 import DividerText from '../../components/DividerWithText'
-import { MessageForm } from '../../components/MessageForm'
+import { MessageForm } from './MessageForm'
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
 
 import { LightSpeed, Fade } from 'react-reveal'
 import Jump from 'react-reveal/Jump'
-
-
 
 export const Contact = () => {
   const classes = useStyles()

@@ -1,38 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import {
-  Button,
-  Container,
-  TextField,
-  makeStyles,
-  Paper,
-} from '@material-ui/core'
+import { Button, Container, TextField, Paper } from '@material-ui/core'
 
 import SendIcon from '@material-ui/icons/Send'
-import { sendMail } from '../../actions/contactActions'
-import { CONTACT_SEND_MAIL_RESET } from '../../constants/contactConstants'
+import { sendMail } from '../../../actions/contactActions'
+import { CONTACT_SEND_MAIL_RESET } from '../../../constants/contactConstants'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ModalLoader } from '../../components/ModalLoader'
-import { ModalMessage } from '../../components/ModalMessage'
-import { ContactModal } from './contacktModal/ContactModal'
+import { ModalLoader } from '../../../components/ModalLoader'
+import { ModalMessage } from '../../../components/ModalMessage'
+import { ContactModal } from '../contacktModal/ContactModal'
 import { Fade } from 'react-reveal'
 
-const useStyles = makeStyles((theme) => ({
-  paperWrapper: {
-    padding: 20,
-    borderRadius: 10,
-  },
-}))
-
-const namelKeywords = [
-  'Please input a minimum of 3 characters on your name',
-  'Use only letters for the name',
-]
-const emailKeywords = ['Please Input Valid Email']
-const messageKeywords = [
-  "Please don't be shy.Message me with more than 5 characters",
-]
+import { useStyles } from './mfStyle'
+import { emailKeywords, messageKeywords, nameKeywords } from './mfData'
 
 export const MessageForm: React.FC = () => {
   const classes = useStyles()
@@ -95,9 +76,7 @@ export const MessageForm: React.FC = () => {
 
   const errorHandler =
     error &&
-    [...error.split(',')].some((e) =>
-      namelKeywords.includes(e) ? true : false
-    )
+    [...error.split(',')].some((e) => (nameKeywords.includes(e) ? true : false))
 
   return (
     <>

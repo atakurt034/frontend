@@ -11,14 +11,16 @@ import { Menu } from './components/navitems/SpeedDial'
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <Menu />
-      <About />
-      <Stacks />
-      <Project />
-      <Contact />
-      <Footer />
-    </Provider>
+    <div style={{ maxWidth: '100vw', overflow: 'hidden' }}>
+      <Provider store={store}>
+        <Menu />
+        <About />
+        <Stacks />
+        <Project />
+        <Contact />
+        <Footer />
+      </Provider>
+    </div>
   )
 }
 
